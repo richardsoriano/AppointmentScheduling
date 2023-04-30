@@ -1,9 +1,10 @@
 ﻿@model AppointmentScheduling.Models.ViewModels.RegisterViewModel
+
 <h2>Sign Up</h2>
 <form method="post" asp-action="Register" asp-controller="Account">
     <h4>Create a new account</h4>
     <hr />
-    <div asp-validtion-summary="All" class="text-danger"></div>
+    <div  asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group row">
         <label class="col-md-2" asp-for="Name"></label>
