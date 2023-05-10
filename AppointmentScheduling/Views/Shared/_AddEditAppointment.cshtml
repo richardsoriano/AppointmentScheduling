@@ -21,43 +21,12 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Descriptions</label>
-                        <textarea type="text" class="form-control" id="description"></textarea>
+                        <textarea type="text" class="form-control" id="title"></textarea>
                     </div>
-                    @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Admin))
-                    {
-                        <div class="form-group">
-                            <label for="title">Select Patient</label>
-                            <select id="patientId" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control"></select>
-                        </div>
-                    }
-                    else
-                    {
-                        @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Doctor))
-                        {
-                             <div class="form-group">
-                                <label for="lblPatientName">Patient Name</label>
-                                <label class="form-control" id="lblPatientName" disabled />
-                            </div>
-                           <div class="form-group">
-                                <label for="lblStatus">Status</label>
-                                <label class="form-control" id="lblStatus" disabled />
-                            </div>
-                        }
-                        @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Patient))
-                        {
-                            <div class="form-group">
-                                <label for="lblDoctorName">Doctor Name</label>
-                                <label class="form-control" id="lblDoctorName" disabled />
-                            </div>
-                            <div class="form-group">
-                                <label for="lblStatus">Status</label>
-                                <label class="form-control" id="lblStatus" disabled />
-                            </div>
-                        }
-       
-                    }
-
-
+                    <div class="form-group">
+                        <label for="title">Select Patient</label>
+                        <select id="patientId" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control"></select>
+                    </div>
                     <div class="form-group">
                         <label for="appointmentDate">Start Date Time</label>
                         <input id="appointmentDate" class="form-control" />
@@ -69,17 +38,9 @@
                     <input type="hidden" id="id" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="onCloseModal();">Close</button>
-                    @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Admin))
-                    {                    
-                        <button type="button" class="btn btn-success" onclick="onSubmitForm();">Submit</button>
-                        <button type="button" class="btn btn-danger hidden" onclick="onDeleteAppointment();">Delete</button>   
-                    }
-                    @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Doctor))
-                    {
-                       <button type="button" class="btn btn-success" onclick="onConfirm();">Confirm</button>
-                        <button type="button" class="btn btn-danger hidden" onclick="onDeleteAppointment();">Delete</button>  
-                    }
+                    <button type="button" class="btn btn-secondary" onclick="onCloseModal()">Close</button>&nbsp;
+                    <button type="button" class="btn btn-success" onclick="onSubmitForm()">Submit</button>
+
                 </div>
             </form>
         </div>
