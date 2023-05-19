@@ -5,12 +5,12 @@
             <div class="form-group row col-2" id="divDoctorList">
                 <label>Select Doctor</label>
                 @Html.DropDownList("doctorId",new SelectList(ViewBag.DoctorList,"Id","Name"), new {@class="form-control select2"
-                , @onchange="onDoctorChange();"})
+                ,@onchange="onDoctorChange();"})
             </div>
         }
         <div></div>
         <div id="calendar"></div>
     </div>
 </div>
-
+<div></div>
 <partial name="_AddEditAppointment" />

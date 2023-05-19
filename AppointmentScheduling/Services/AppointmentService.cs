@@ -44,7 +44,7 @@ namespace AppointmentScheduling.Services
 
         public AppointmentVM GetById(int Id)
         {
-            return _db.Appointments.Where(x => x.Id == Id).ToList().Select(c => new AppointmentVM()
+            return _db.Appointments.Where(x => x.Id == Id).ToList().Select(selector:c => new AppointmentVM()
             {
                 Id = c.Id,
                 Title = c.Title,
