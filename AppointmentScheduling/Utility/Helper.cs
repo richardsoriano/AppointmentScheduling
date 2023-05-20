@@ -17,8 +17,9 @@ namespace AppointmentScheduling.Utility
 
         public static string appointmentAddedError = "Something went wrong. Added"; 
         public static string appointmentUpdatedError = "Something went wrong. Updated";
-        public static string appointmentWentWrong = "Something went strong.";
-
+        public static string somethingWentWrong = "Something went strong.";
+		public static string meetingConfirm = "Meeting confirm successfully";
+		public static string meetingConfirmError = "Meeting confirm error";
 		public static int success_code = 1;
 		public static int failure_code = 0;
 

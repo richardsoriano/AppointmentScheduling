@@ -44,7 +44,7 @@ namespace AppointmentScheduling.Services
 
         public AppointmentVM GetById(int Id)
         {
-            return _db.Appointments.Where(x => x.Id == Id).ToList().Select(selector:c => new AppointmentVM()
+            return _db.Appointments.Where(x => x.Id == Id).ToList().Select(selector: c => new AppointmentVM()
             {
                 Id = c.Id,
                 Title = c.Title,
@@ -92,14 +92,14 @@ namespace AppointmentScheduling.Services
         {
 
             var doctors = (from user in _db.Users
-                          
-                           join userRoles in _db.UserRoles  on user.Id equals userRoles.UserId 
-                           join roles in _db.Roles.Where(x=> x.Name ==Helper.Doctor) on userRoles.RoleId equals roles.Id
-                          select new DoctorVM
-                          {
-                              Id = user.Id,
-                              Name = user.Name
-                          }
+
+                           join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
+                           join roles in _db.Roles.Where(x => x.Name == Helper.Doctor) on userRoles.RoleId equals roles.Id
+                           select new DoctorVM
+                           {
+                               Id = user.Id,
+                               Name = user.Name
+                           }
                           ).ToList();
             return doctors;
 
@@ -108,15 +108,37 @@ namespace AppointmentScheduling.Services
         public List<PatientVM> GetPatientList()
         {
             var patients = (from user in _db.Users
-                           join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
-                           join roles in _db.Roles.Where(x => x.Name == Helper.Patient) on userRoles.RoleId equals roles.Id
-                           select new PatientVM
-                           {
-                               Id = user.Id,
-                               Name = user.Name
-                           }
+                            join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
+                            join roles in _db.Roles.Where(x => x.Name == Helper.Patient) on userRoles.RoleId equals roles.Id
+                            select new PatientVM
+                            {
+                                Id = user.Id,
+                                Name = user.Name
+                            }
                           ).ToList();
             return patients;
+        }
+
+        public async Task<int> ConfirmEvent(int Id)
+        {
+            var appointment = _db.Appointments.FirstOrDefault(x => x.Id == Id);
+            if (appointment != null)
+            {
+                appointment.IsDoctorApproved = true;
+                return await _db.SaveChangesAsync();
+            }
+            return 0;
+        }
+        public async Task<int> DeleteEvent(int Id)
+        {
+            var appointment = _db.Appointments.FirstOrDefault(x => x.Id == Id);
+            if (appointment != null)
+            {
+                _db.Appointments.Remove(appointment);
+                return await _db.SaveChangesAsync();
+            }
+
+            return 0;
         }
     }
 }
