@@ -29,10 +29,7 @@
                             <label for="title">Select Patient</label>
                             <select id="patientId" asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))" class="form-control"></select>
                         </div>
-                        <div class="form-group">
-                            <label for="lblStatus">Status</label>
-                            <input type="text" class="form-control" disabled id="lblStatus" />
-                        </div>
+                        
                     }
                     else
                     {
@@ -40,22 +37,22 @@
                         {
                            <div class="form-group">
                                 <label for="lblPatientName">Patient Name</label>
-                                <input type="text" class="form-control" disabled id="lblPatientName" />
+                                <label class="form-control" disabled id="lblPatientName" />
                             </div> 
                             <div class="form-group">
                                 <label for="lblStatus">Status</label>
-                                <input type="text" class="form-control" disabled id="lblStatus" />
+                                <label class="form-control" disabled id="lblStatus" />
                             </div>
                         }
                         @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Patient))
                         {
                             <div class="form-group">
                                 <label for="lblDoctorName">Doctor Name</label>
-                                <input class="form-control" disabled id="lblDoctorName" />
+                                <label class="form-control" disabled id="lblDoctorName" />
                             </div>
                             <div class="form-group">
                                 <label for="lblStatus">Status</label>
-                                <input class="form-control" disabled id="lblStatus" />
+                                <label class="form-control" disabled id="lblStatus" />
                             </div>
                         }
                     }
@@ -74,13 +71,13 @@
                     @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Admin))
                     {
                         <button type="button" id="btnSubmit" class="btn btn-success" onclick="onSubmitForm()">Submit</button>
-                        <button type="button" id="btnDelete" class="btn btn-danger hidden" onclick="onDeleteAppointment();">Delete</button>
+                        <button type="button" id="btnDelete" class="btn btn-danger" onclick="onDeleteAppointment();">Delete</button>
 
                     }
                     @if (User.IsInRole(AppointmentScheduling.Utility.Helper.Doctor))
                     {
                         <button type="button" id="btnConfirm" class="btn btn-success" onclick="onConfirm()">Confirm</button>
-                        <button type="button" id="btnDelete" class="btn btn-danger hidden" onclick="onDeleteAppointment();">Delete</button>
+                        <button type="button" id="btnDelete" class="btn btn-danger" onclick="onDeleteAppointment();">Delete</button>
                     }
                     
 
